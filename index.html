@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Prism — a three.js study</title>
+    <meta
+      name="description"
+      content="A minimal real-time scene built with three.js: a faceted gem, two orbits, and a drift of light."
+    />
+    <meta name="theme-color" content="#06070b" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 22 12 12 22 2 12Z' fill='none' stroke='%23a8ffe9' stroke-width='1.4'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Space+Grotesk:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar reveal" style="--d: 0.1s">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2 22 12 12 22 2 12Z" stroke="currentColor" stroke-width="1.1" />
+          <path d="M12 6.5 17.5 12 12 17.5 6.5 12Z" fill="currentColor" opacity="0.3" />
+        </svg>
+        <span>Prism</span>
+      </div>
+      <span class="tag">Three.js study — No. 001</span>
+    </header>
+
+    <main class="hero">
+      <p class="eyebrow reveal" style="--d: 0.2s">Real-time · WebGL</p>
+      <h1 class="reveal" style="--d: 0.3s">Shape the<br /><em>light</em>.</h1>
+      <p class="lede reveal" style="--d: 0.42s">
+        A quiet little scene built with three.js — twenty faces, two orbits,
+        and a drift of light in the dark.
+      </p>
+      <div class="hint reveal" style="--d: 0.54s">
+        <span class="dot"></span>
+        Drag to orbit
+      </div>
+    </main>
+
+    <footer class="footer reveal" style="--d: 0.66s">
+      <span>three.js · r169</span>
+      <span class="footer-note">Built without a build step</span>
+    </footer>
+
+    <div id="loader">
+      <div class="loader-inner">
+        <div class="loader-diamond" aria-hidden="true"></div>
+        <p id="loader-status" role="status">Preparing scene</p>
+      </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="./main.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          if (!document.body.classList.contains('is-ready')) {
+            document.body.classList.add('is-error');
+            var status = document.getElementById('loader-status');
+            if (status) {
+              status.textContent = 'The scene could not load. Check your connection and refresh.';
+            }
+          }
+        }, 10000);
+      });
+    </script>
+  </body>
+</html>
